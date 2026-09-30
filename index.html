@@ -34,8 +34,8 @@
         <a href="#solution">La solution</a>
         <a href="#fonctionnalites">Fonctionnalités</a>
         <a href="#tarifs">Tarifs</a>
-        <a href="#faq">FAQ</a>
-        <a class="nav-cta" href="https://facture-freelance.vercel.app/login">Accéder à l’application</a>
+        <a href="https://facture-freelance.vercel.app/demo">Démo</a>
+        <a class="nav-cta" href="#demande-demo">Demander une présentation</a>
       </nav>
     </header>
 
@@ -50,8 +50,8 @@
             Membres, trésorerie, adhésions, documents et échanges : Assos Conscrit remplace les fichiers éparpillés par un espace clair, partagé et accessible partout.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#tarifs">Découvrir les offres</a>
-            <a class="button button-secondary" href="#apercu"><span class="play" aria-hidden="true">▶</span> Voir l’interface</a>
+            <a class="button button-primary" href="https://facture-freelance.vercel.app/demo">Explorer le compte démo</a>
+            <a class="button button-secondary" href="#demande-demo"><span class="play" aria-hidden="true">▶</span> Demander une présentation</a>
           </div>
           <div class="hero-proof" aria-label="Points forts">
             <span><b>✓</b> Sans installation</span>
@@ -211,21 +211,45 @@
         <div class="pricing-grid">
           <article class="price-card reveal">
             <span class="plan">Starter</span><h3>Pour démarrer sans friction.</h3><div class="price"><b data-monthly="19" data-yearly="16">19</b><span>€<small>/ mois</small></span></div><p class="billing-note">Jusqu’à 50 membres</p>
-            <a class="button button-outline" href="https://facture-freelance.vercel.app/login">Essayer Starter</a>
+            <a class="button button-outline" href="#demande-demo">Choisir Starter</a>
             <ul><li>Annuaire des membres</li><li>Trésorerie simplifiée</li><li>Documents partagés</li><li>Utilisateurs illimités</li><li>Support par email</li></ul>
           </article>
           <article class="price-card featured reveal">
             <span class="popular">Le plus choisi</span><span class="plan">Association</span><h3>Pour gérer toute l’association.</h3><div class="price"><b data-monthly="39" data-yearly="33">39</b><span>€<small>/ mois</small></span></div><p class="billing-note">Jusqu’à 300 membres</p>
-            <a class="button button-primary" href="https://facture-freelance.vercel.app/login">Essayer Association</a>
+            <a class="button button-primary" href="#demande-demo">Choisir Association</a>
             <ul><li>Tout Starter</li><li>Adhésions et signatures PDF</li><li>Factures, devis et relances</li><li>Notes de frais</li><li>Messagerie et notifications</li><li>Permissions avancées</li></ul>
           </article>
           <article class="price-card reveal">
             <span class="plan">Pro</span><h3>Pour les structures exigeantes.</h3><div class="price"><b data-monthly="69" data-yearly="58">69</b><span>€<small>/ mois</small></span></div><p class="billing-note">Jusqu’à 1 000 membres</p>
-            <a class="button button-outline" href="https://facture-freelance.vercel.app/login">Choisir Pro</a>
+            <a class="button button-outline" href="#demande-demo">Choisir Pro</a>
             <ul><li>Tout Association</li><li>Stockage renforcé</li><li>Journal d’activité complet</li><li>Accompagnement au démarrage</li><li>Support prioritaire</li><li>Exports avancés</li></ul>
           </article>
         </div>
         <p class="pricing-footnote reveal">Tarifs de lancement, sans engagement. La TVA applicable sera précisée lors de la commercialisation.</p>
+      </section>
+
+      <section class="section demo-request-section" id="demande-demo">
+        <div class="demo-request-copy reveal">
+          <span class="eyebrow light"><span></span> Une présentation adaptée à votre association</span>
+          <h2>Voyons ensemble comment vous simplifier la vie.</h2>
+          <p>Expliquez-nous rapidement votre fonctionnement. Nous vous recontactons pour une démonstration personnalisée, sans engagement.</p>
+          <a class="demo-direct-link" href="https://facture-freelance.vercel.app/demo"><span>▶</span><b>Vous préférez découvrir seul ?</b><small>Ouvrez le compte démo maintenant, sans identifiant.</small></a>
+          <ul><li>30 minutes avec un humain</li><li>Des réponses adaptées à votre bureau</li><li>Aucune carte bancaire demandée</li></ul>
+        </div>
+        <form class="demo-form reveal" data-demo-form>
+          <div class="form-heading"><span>Demande de démonstration</span><small>Tous les champs marqués * sont obligatoires.</small></div>
+          <div class="form-grid">
+            <label><span>Votre nom *</span><input name="name" type="text" autocomplete="name" maxlength="100" required placeholder="Camille Martin" /></label>
+            <label><span>Votre email *</span><input name="email" type="email" autocomplete="email" maxlength="200" required placeholder="camille@association.fr" /></label>
+            <label><span>Nom de l’association *</span><input name="association" type="text" autocomplete="organization" maxlength="160" required placeholder="Les Conscrits du Village" /></label>
+            <label><span>Nombre de membres</span><select name="memberCount"><option value="">Sélectionner</option><option value="1-50">1 à 50</option><option value="51-100">51 à 100</option><option value="101-300">101 à 300</option><option value="301-1000">301 à 1 000</option><option value="1000+">Plus de 1 000</option></select></label>
+            <label class="form-wide"><span>Qu’aimeriez-vous simplifier ?</span><textarea name="needs" maxlength="1500" rows="4" placeholder="Par exemple : suivre les cotisations, centraliser les documents, gérer la trésorerie…"></textarea></label>
+            <label class="honeypot" aria-hidden="true">Votre site web<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+            <label class="form-consent form-wide"><input name="consent" type="checkbox" required /><span>J’accepte d’être recontacté au sujet d’Assos Conscrit. Mes informations servent uniquement à traiter cette demande.</span></label>
+          </div>
+          <button class="button button-primary form-submit" type="submit">Envoyer ma demande</button>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
       </section>
 
       <section class="section faq-section" id="faq">
@@ -240,7 +264,7 @@
       </section>
 
       <section class="final-cta reveal">
-        <div><span class="eyebrow light"><span></span> Prêt à simplifier votre association ?</span><h2>Un bureau mieux organisé,<br />dès la prochaine réunion.</h2><p>Découvrez l’application et imaginez tout ce que votre équipe pourrait faire avec moins d’administratif.</p><div class="hero-actions"><a class="button button-white" href="https://facture-freelance.vercel.app/login">Accéder à l’application</a><a class="button button-ghost" href="https://github.com/camillejean192-byte/facture-freelance">Voir le projet GitHub</a></div></div>
+        <div><span class="eyebrow light"><span></span> Prêt à simplifier votre association ?</span><h2>Un bureau mieux organisé,<br />dès la prochaine réunion.</h2><p>Découvrez l’application et imaginez tout ce que votre équipe pourrait faire avec moins d’administratif.</p><div class="hero-actions"><a class="button button-white" href="https://facture-freelance.vercel.app/demo">Explorer la démo</a><a class="button button-ghost" href="#demande-demo">Être recontacté</a></div></div>
         <div class="cta-orbit"><span class="orbit-center">AC</span><i class="orb o1">€</i><i class="orb o2">◎</i><i class="orb o3">✎</i><i class="orb o4">▤</i></div>
       </section>
     </main>
@@ -248,7 +272,7 @@
     <footer>
       <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">AC</span><span>Assos Conscrit</span></a>
       <p>L’outil simple qui rassemble les associations.</p>
-      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a><a href="https://github.com/camillejean192-byte/facture-freelance">GitHub</a></nav>
+      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="https://facture-freelance.vercel.app/demo">Démo</a><a href="#faq">FAQ</a><a href="https://github.com/camillejean192-byte/facture-freelance">GitHub</a></nav>
       <small>© 2026 Assos Conscrit. Projet en cours de lancement.</small>
     </footer>
     <script src="/script.js"></script>

@@ -39,3 +39,45 @@ document.querySelectorAll("[data-billing]").forEach((button) => {
     });
   });
 });
+
+const demoForm = document.querySelector("[data-demo-form]");
+const formStatus = document.querySelector("[data-form-status]");
+
+demoForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const submit = demoForm.querySelector("button[type='submit']");
+  const formData = new FormData(demoForm);
+  const payload = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    association: formData.get("association"),
+    memberCount: formData.get("memberCount"),
+    needs: formData.get("needs"),
+    website: formData.get("website"),
+    consent: formData.get("consent") === "on",
+  };
+
+  submit.disabled = true;
+  submit.textContent = "Envoi en cours…";
+  formStatus.className = "form-status";
+  formStatus.textContent = "";
+
+  try {
+    const response = await fetch("https://facture-freelance.vercel.app/api/demo-request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message || "Impossible d’envoyer la demande.");
+    demoForm.reset();
+    formStatus.classList.add("success");
+    formStatus.textContent = result.message;
+  } catch (error) {
+    formStatus.classList.add("error");
+    formStatus.textContent = error instanceof Error ? error.message : "Une erreur est survenue. Réessayez dans quelques instants.";
+  } finally {
+    submit.disabled = false;
+    submit.textContent = "Envoyer ma demande";
+  }
+});
