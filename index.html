@@ -31,10 +31,10 @@
         <span></span><span></span><span></span><span class="sr-only">Ouvrir le menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
-        <a href="#solution">La solution</a>
-        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#visite-guidee">Visite guidée</a>
+        <a href="#programme-pilote">Programme pilote</a>
         <a href="#tarifs">Tarifs</a>
-        <a href="https://facture-freelance.vercel.app/demo">Démo</a>
+        <a href="https://facture-freelance.vercel.app/demo">Compte démo</a>
         <a class="nav-cta" href="#demande-demo">Demander une présentation</a>
       </nav>
     </header>
@@ -50,13 +50,13 @@
             Membres, trésorerie, adhésions, documents et échanges : Assos Conscrit remplace les fichiers éparpillés par un espace clair, partagé et accessible partout.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://facture-freelance.vercel.app/demo">Explorer le compte démo</a>
-            <a class="button button-secondary" href="#demande-demo"><span class="play" aria-hidden="true">▶</span> Demander une présentation</a>
+            <a class="button button-primary" href="#demande-demo">Demander une présentation</a>
+            <a class="button button-secondary" href="https://facture-freelance.vercel.app/demo"><span class="play" aria-hidden="true">▶</span> Explorer le compte démo</a>
           </div>
           <div class="hero-proof" aria-label="Points forts">
             <span><b>✓</b> Sans installation</span>
             <span><b>✓</b> Utilisateurs illimités</span>
-            <span><b>✓</b> Données en France &amp; Europe</span>
+            <span><b>✓</b> Accès adaptés à chaque rôle</span>
           </div>
         </div>
 
@@ -126,6 +126,28 @@
         <div><span>🔐 Accès sécurisé</span><span>📱 Mobile &amp; ordinateur</span><span>🧑‍🤝‍🧑 Droits par membre</span><span>🇫🇷 Interface en français</span></div>
       </section>
 
+      <section class="section pilot-section" id="programme-pilote">
+        <div class="pilot-card reveal">
+          <div class="pilot-copy">
+            <span class="eyebrow light"><span></span> 10 associations au lancement</span>
+            <h2>Construisez la suite avec nous.</h2>
+            <p>Le programme pilote s’adresse aux premiers bureaux qui souhaitent être accompagnés de près et faire évoluer Assos Conscrit selon leur réalité.</p>
+            <div class="pilot-benefits">
+              <span><b>01</b> Import de votre annuaire</span>
+              <span><b>02</b> Mise en route personnalisée</span>
+              <span><b>03</b> Point de suivi chaque mois</span>
+            </div>
+          </div>
+          <aside class="pilot-offer" aria-label="Offre pilote">
+            <span class="pilot-tag">Programme fondateur</span>
+            <strong>2 mois offerts</strong>
+            <p>puis votre formule au tarif de lancement, sans engagement.</p>
+            <a class="button button-white" href="#demande-demo">Candidater au programme</a>
+            <small>Les places sont limitées pour garantir un vrai accompagnement.</small>
+          </aside>
+        </div>
+      </section>
+
       <section class="section problem-section" id="solution">
         <div class="section-heading centered reveal">
           <span class="eyebrow dark"><span></span> Une organisation plus simple</span>
@@ -182,6 +204,43 @@
         </div>
       </section>
 
+      <section class="section tour-section" id="visite-guidee">
+        <div class="tour-intro reveal">
+          <span class="eyebrow light"><span></span> Visite guidée · 1 min 15</span>
+          <h2>Voyez le quotidien<br />du bureau, en plus simple.</h2>
+          <p>Lancez la visite pour découvrir comment les informations circulent entre l’annuaire, la trésorerie et les documents.</p>
+          <div class="tour-controls">
+            <button class="tour-play" type="button" data-tour-play aria-label="Mettre la visite en pause"><span>Ⅱ</span> <b>Pause</b></button>
+            <span class="tour-time" data-tour-time>00:00 / 01:15</span>
+          </div>
+          <div class="tour-progress" aria-hidden="true"><i data-tour-progress></i></div>
+          <div class="tour-dots" role="tablist" aria-label="Étapes de la visite">
+            <button class="active" type="button" data-tour-dot="0" aria-label="Tableau de bord"></button>
+            <button type="button" data-tour-dot="1" aria-label="Membres"></button>
+            <button type="button" data-tour-dot="2" aria-label="Trésorerie"></button>
+            <button type="button" data-tour-dot="3" aria-label="Documents"></button>
+          </div>
+        </div>
+        <div class="tour-stage reveal" data-tour-stage>
+          <article class="tour-slide active" data-tour-slide>
+            <div class="tour-caption"><span>01</span><div><b>Tout comprendre en un regard</b><small>Le tableau de bord rassemble les chiffres et les actions utiles.</small></div></div>
+            <div class="tour-ui dashboard-tour"><div class="tour-top"><span>Bonjour Camille</span><b>Tableau de bord</b><i>+ Entrée</i></div><div class="tour-metrics"><span><small>Solde</small><b>12 480 €</b></span><span><small>Recettes</small><b class="positive">28 640 €</b></span><span><small>Membres</small><b>184</b></span></div><div class="tour-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          </article>
+          <article class="tour-slide" data-tour-slide>
+            <div class="tour-caption"><span>02</span><div><b>Retrouver un membre immédiatement</b><small>Recherche, rôle et coordonnées restent dans le même annuaire.</small></div></div>
+            <div class="tour-ui member-tour"><div class="tour-search">⌕ Rechercher par nom, email ou ville…</div><div><i>ÉB</i><span><b>Élodie Bernard</b><small>Trésorière · Classe 2026</small></span><em>Actif</em></div><div><i>TR</i><span><b>Thomas Roux</b><small>Membre · Classe 2024</small></span><em>Actif</em></div><div><i>CL</i><span><b>Chloé Laurent</b><small>Secrétaire · Classe 2025</small></span><em>Actif</em></div></div>
+          </article>
+          <article class="tour-slide" data-tour-slide>
+            <div class="tour-caption"><span>03</span><div><b>Suivre chaque euro sans ressaisie</b><small>Les mouvements, justificatifs et totaux restent liés.</small></div></div>
+            <div class="tour-ui money-tour"><div class="money-summary"><span><small>Entrées</small><b>28 640 €</b></span><span><small>Sorties</small><b>16 160 €</b></span></div><ul><li><span><b>Cotisations septembre</b><small>Virement · Aujourd’hui</small></span><strong>+ 1 450 €</strong></li><li><span><b>Location salle</b><small>Carte · Hier</small></span><strong class="negative">− 420 €</strong></li><li><span><b>Impression affiches</b><small>Justificatif joint</small></span><strong class="negative">− 76 €</strong></li></ul></div>
+          </article>
+          <article class="tour-slide" data-tour-slide>
+            <div class="tour-caption"><span>04</span><div><b>Transmettre un bureau proprement</b><small>Les documents importants ne restent plus sur un ordinateur personnel.</small></div></div>
+            <div class="tour-ui docs-tour"><div><i>PDF</i><span><b>Statuts de l’association</b><small>Mis à jour le 12 septembre</small></span><em>Ouvrir</em></div><div><i>PDF</i><span><b>Procès-verbal · Assemblée générale</b><small>Ajouté par Camille</small></span><em>Ouvrir</em></div><div><i>CSV</i><span><b>Export comptable 2026</b><small>Généré aujourd’hui</small></span><em>Ouvrir</em></div></div>
+          </article>
+        </div>
+      </section>
+
       <section class="section mobile-section">
         <div class="mobile-copy reveal">
           <span class="eyebrow light"><span></span> Dans la poche de toute l’équipe</span>
@@ -203,6 +262,31 @@
           <article class="reveal"><i>✎</i><h3>Secrétariat</h3><p>Un annuaire fiable, des adhésions suivies et des documents accessibles.</p></article>
           <article class="reveal"><i>☺</i><h3>Membres</h3><p>Un espace pratique pour communiquer et envoyer une note de frais.</p></article>
         </div>
+      </section>
+
+      <section class="section proof-section">
+        <div class="proof-heading reveal"><span class="eyebrow dark"><span></span> Des résultats à mesurer ensemble</span><h2>Pas de faux avis.<br />Des preuves, avec votre accord.</h2><p>Assos Conscrit débute sa phase pilote. Les premiers retours et chiffres vérifiés seront publiés ici uniquement avec l’autorisation des associations concernées.</p></div>
+        <div class="use-case-grid">
+          <article class="reveal"><span>Passation de bureau</span><h3>Un espace transmissible</h3><p>Les accès, documents et historiques restent dans l’association quand l’équipe change.</p><small>Objectif pilote : une passation préparée en moins d’une réunion.</small></article>
+          <article class="reveal"><span>Suivi financier</span><h3>Une saisie, plusieurs usages</h3><p>Chaque mouvement alimente les totaux, l’historique et l’export comptable.</p><small>Objectif pilote : réduire les doubles saisies au strict minimum.</small></article>
+          <article class="reveal"><span>Vie des membres</span><h3>Des informations fiables</h3><p>L’annuaire, les rôles et les adhésions partagent la même source.</p><small>Objectif pilote : retrouver une information en moins d’une minute.</small></article>
+        </div>
+      </section>
+
+      <section class="section roi-section" id="calculateur">
+        <div class="roi-copy reveal"><span class="eyebrow dark"><span></span> Estimez le temps récupéré</span><h2>Combien vous coûte aujourd’hui l’administratif dispersé&nbsp;?</h2><p>Ajustez les trois valeurs. Cette estimation reste indicative : elle sert à préparer la démonstration, pas à promettre un résultat.</p><a href="#demande-demo">Calculer avec vos vrais usages</a></div>
+        <div class="roi-calculator reveal">
+          <label><span>Membres suivis <b data-roi-members-value>150</b></span><input type="range" min="20" max="1000" step="10" value="150" data-roi-members /></label>
+          <label><span>Heures administratives par semaine <b data-roi-hours-value>8 h</b></span><input type="range" min="1" max="30" step="1" value="8" data-roi-hours /></label>
+          <label><span>Valeur d’une heure bénévole <b data-roi-rate-value>18 €</b></span><input type="range" min="5" max="50" step="1" value="18" data-roi-rate /></label>
+          <div class="roi-results"><span><small>Temps potentiellement récupéré</small><strong data-roi-saved>10 h / mois</strong></span><span><small>Valeur de ce temps</small><strong data-roi-value>180 € / mois</strong></span><span><small>Sur une année</small><strong data-roi-days>15 jours</strong></span></div>
+          <p>Hypothèse prudente : 20 à 35 % du temps administratif peut être simplifié selon la taille et l’organisation.</p>
+        </div>
+      </section>
+
+      <section class="section reassurance-section">
+        <a class="reassurance-card reveal" href="/securite.html"><span>Protection des données</span><h3>Sécurité &amp; RGPD, expliqués clairement.</h3><p>Accès, permissions, conservation et droits : découvrez les principes appliqués et les engagements pris avant la commercialisation.</p><b>Consulter la page sécurité</b></a>
+        <a class="reassurance-card reveal" href="/aide.html"><span>Prise en main</span><h3>Des guides pour chaque rôle.</h3><p>Importer les membres, enregistrer un mouvement, préparer une facture ou transmettre le bureau : tout est documenté.</p><b>Ouvrir le centre d’aide</b></a>
       </section>
 
       <section class="section pricing-section" id="tarifs">
@@ -243,6 +327,8 @@
             <label><span>Votre email *</span><input name="email" type="email" autocomplete="email" maxlength="200" required placeholder="camille@association.fr" /></label>
             <label><span>Nom de l’association *</span><input name="association" type="text" autocomplete="organization" maxlength="160" required placeholder="Les Conscrits du Village" /></label>
             <label><span>Nombre de membres</span><select name="memberCount"><option value="">Sélectionner</option><option value="1-50">1 à 50</option><option value="51-100">51 à 100</option><option value="101-300">101 à 300</option><option value="301-1000">301 à 1 000</option><option value="1000+">Plus de 1 000</option></select></label>
+            <label><span>Date souhaitée</span><input name="preferredDate" type="date" data-booking-date /></label>
+            <label><span>Créneau préféré</span><select name="preferredSlot"><option value="">Peu importe</option><option>9 h – 12 h</option><option>12 h – 14 h</option><option>14 h – 18 h</option><option>Après 18 h</option></select></label>
             <label class="form-wide"><span>Qu’aimeriez-vous simplifier ?</span><textarea name="needs" maxlength="1500" rows="4" placeholder="Par exemple : suivre les cotisations, centraliser les documents, gérer la trésorerie…"></textarea></label>
             <label class="honeypot" aria-hidden="true">Votre site web<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
             <label class="form-consent form-wide"><input name="consent" type="checkbox" required /><span>J’accepte d’être recontacté au sujet d’Assos Conscrit. Mes informations servent uniquement à traiter cette demande.</span></label>
@@ -272,7 +358,7 @@
     <footer>
       <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">AC</span><span>Assos Conscrit</span></a>
       <p>L’outil simple qui rassemble les associations.</p>
-      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="https://facture-freelance.vercel.app/demo">Démo</a><a href="#faq">FAQ</a><a href="https://github.com/camillejean192-byte/facture-freelance">GitHub</a></nav>
+      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="https://facture-freelance.vercel.app/demo">Démo</a><a href="/securite.html">Sécurité</a><a href="/aide.html">Aide</a><a href="/logiciel-conscrits.html">Logiciel conscrits</a><a href="https://github.com/camillejean192-byte/facture-freelance">GitHub</a></nav>
       <small>© 2026 Assos Conscrit. Projet en cours de lancement.</small>
     </footer>
     <script src="/script.js"></script>

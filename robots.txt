@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://assos-conscrit-site.vercel.app/sitemap.xml
