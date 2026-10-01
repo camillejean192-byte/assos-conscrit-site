@@ -256,12 +256,13 @@
 
       <section class="section roles-section">
         <div class="section-heading centered reveal"><span class="eyebrow dark"><span></span> Chacun voit ce dont il a besoin</span><h2>Conçu pour toute l’équipe.</h2><p>Des accès simples et précis, sans multiplier les comptes ou partager les mots de passe.</p></div>
-        <div class="role-grid">
-          <article class="reveal"><i>♔</i><h3>Présidence</h3><p>Une vision claire de l’activité, des membres et des finances.</p></article>
-          <article class="reveal"><i>€</i><h3>Trésorerie</h3><p>Des comptes à jour, des justificatifs rangés et des exports propres.</p></article>
-          <article class="reveal"><i>✎</i><h3>Secrétariat</h3><p>Un annuaire fiable, des adhésions suivies et des documents accessibles.</p></article>
-          <article class="reveal"><i>☺</i><h3>Membres</h3><p>Un espace pratique pour communiquer et envoyer une note de frais.</p></article>
+        <div class="role-grid" role="tablist" aria-label="Découvrir Assos Conscrit par rôle">
+          <button class="role-tab active reveal" type="button" data-role-tab="presidence"><i>♔</i><h3>Présidence</h3><p>Une vision claire de l’activité, des membres et des finances.</p></button>
+          <button class="role-tab reveal" type="button" data-role-tab="tresorerie"><i>€</i><h3>Trésorerie</h3><p>Des comptes à jour, des justificatifs rangés et des exports propres.</p></button>
+          <button class="role-tab reveal" type="button" data-role-tab="secretariat"><i>✎</i><h3>Secrétariat</h3><p>Un annuaire fiable, des adhésions suivies et des documents accessibles.</p></button>
+          <button class="role-tab reveal" type="button" data-role-tab="membre"><i>☺</i><h3>Membres</h3><p>Un espace pratique pour communiquer et envoyer une note de frais.</p></button>
         </div>
+        <div class="role-detail reveal" data-role-detail><div><span>PARCOURS PRÉSIDENCE</span><h3>Décider avec une information à jour.</h3><p>Consultez les indicateurs du bureau, vérifiez les actions récentes et gardez une vue d’ensemble sans demander plusieurs fichiers.</p></div><ul><li>Tableau de bord de l’association</li><li>Journal des actions importantes</li><li>Accès maîtrisés pour chaque personne</li></ul><a class="button button-primary" href="https://facture-freelance.vercel.app/demo" data-track="cta_demo">Tester ce parcours</a></div>
       </section>
 
       <section class="section proof-section">
@@ -289,6 +290,26 @@
         <a class="reassurance-card reveal" href="/aide.html"><span>Prise en main</span><h3>Des guides pour chaque rôle.</h3><p>Importer les membres, enregistrer un mouvement, préparer une facture ou transmettre le bureau : tout est documenté.</p><b>Ouvrir le centre d’aide</b></a>
       </section>
 
+      <section class="section founder-guide-section">
+        <article class="founder-card reveal">
+          <div class="founder-avatar" aria-hidden="true">CJ</div>
+          <div><span class="eyebrow dark"><span></span> Derrière le projet</span><h2>Un produit indépendant, construit au contact des associations.</h2><p>Assos Conscrit est développé par Camille Jean avec une idée simple : rendre la gestion d’un bureau transmissible, compréhensible et moins dépendante des fichiers personnels.</p><div class="founder-links"><a href="/roadmap.html">Voir la feuille de route</a><a href="/nouveautes.html">Voir les nouveautés</a><a href="https://github.com/camillejean192-byte/facture-freelance">Consulter le projet</a></div></div>
+        </article>
+        <article class="guide-card reveal" id="guide-passation">
+          <span class="guide-kicker">Guide gratuit · 12 pages</span><h2>Réussir la passation de votre bureau associatif.</h2><p>Une méthode simple, une checklist et les documents à transmettre pour éviter de repartir de zéro.</p><form data-guide-form><label><span>Recevoir le guide par email</span><input type="email" name="email" required autocomplete="email" placeholder="vous@association.fr"></label><button class="button button-primary" type="submit">Recevoir et télécharger</button><p data-guide-status aria-live="polite"></p></form><small>Vous recevrez uniquement le guide et les informations liées à Assos Conscrit. Désinscription possible à tout moment.</small>
+        </article>
+      </section>
+
+      <section class="section recommender-section" id="quelle-formule">
+        <div class="recommender-copy reveal"><span class="eyebrow light"><span></span> Trouvez votre formule</span><h2>Trois réponses, une recommandation claire.</h2><p>Le résultat est indicatif et n’ajoute rien à votre panier. La souscription en ligne ouvrira après la phase pilote.</p></div>
+        <form class="plan-recommender reveal" data-plan-recommender>
+          <label><span>Combien de membres suivez-vous ?</span><select name="size"><option value="starter">Jusqu’à 50</option><option value="association" selected>51 à 300</option><option value="pro">Plus de 300</option></select></label>
+          <label><span>Avez-vous besoin de factures et devis ?</span><select name="billing"><option value="no">Non</option><option value="yes" selected>Oui</option></select></label>
+          <label><span>Souhaitez-vous un accompagnement prioritaire ?</span><select name="support"><option value="no" selected>Non</option><option value="yes">Oui</option></select></label>
+          <div class="plan-result" data-plan-result><small>Nous vous recommandons</small><strong>Association · 39 € / mois</strong><p>La formule complète pour centraliser la gestion du bureau.</p><a class="button button-white" href="#demande-demo" data-track="plan_recommended">Choisir cette formule</a></div>
+        </form>
+      </section>
+
       <section class="section pricing-section" id="tarifs">
         <div class="section-heading centered reveal"><span class="eyebrow dark"><span></span> Des tarifs adaptés aux associations</span><h2>Commencez simplement.<br />Évoluez quand vous en avez besoin.</h2><p>Pas de prix par utilisateur. Toute l’équipe peut participer sans faire grimper la facture.</p></div>
         <div class="billing-toggle reveal" aria-label="Période de facturation"><button class="active" data-billing="monthly">Mensuel</button><button data-billing="yearly">Annuel <span>2 mois offerts</span></button></div>
@@ -309,7 +330,10 @@
             <ul><li>Tout Association</li><li>Stockage renforcé</li><li>Journal d’activité complet</li><li>Accompagnement au démarrage</li><li>Support prioritaire</li><li>Exports avancés</li></ul>
           </article>
         </div>
-        <p class="pricing-footnote reveal">Tarifs de lancement, sans engagement. La TVA applicable sera précisée lors de la commercialisation.</p>
+        <div class="launch-promise reveal"><span>30 jours pour changer d’avis</span><p>Après l’ouverture commerciale, les premiers abonnements bénéficieront d’une garantie satisfait ou remboursé de 30 jours, selon les conditions prévues dans les CGV.</p></div>
+        <div class="pricing-setup reveal"><article><b>Import compris</b><p>Nous vous aidons à reprendre votre annuaire CSV et à vérifier les colonnes.</p></article><article><b>Mise en route comprise</b><p>Une session de prise en main pour les responsables de l’association.</p></article><article><b>Vos données restent exportables</b><p>Annuaire et éléments comptables peuvent être récupérés dans des formats courants.</p></article></div>
+        <details class="comparison reveal"><summary>Comparer les trois formules en détail <span>+</span></summary><div class="comparison-scroll"><table><thead><tr><th>Fonction</th><th>Starter</th><th>Association</th><th>Pro</th></tr></thead><tbody><tr><td>Membres</td><td>50</td><td>300</td><td>1 000</td></tr><tr><td>Utilisateurs</td><td>Illimités</td><td>Illimités</td><td>Illimités</td></tr><tr><td>Trésorerie &amp; documents</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Adhésions &amp; signatures</td><td>—</td><td>✓</td><td>✓</td></tr><tr><td>Factures, devis &amp; notes de frais</td><td>—</td><td>✓</td><td>✓</td></tr><tr><td>Journal complet</td><td>—</td><td>—</td><td>✓</td></tr><tr><td>Accompagnement</td><td>Email</td><td>Démarrage</td><td>Prioritaire</td></tr></tbody></table></div></details>
+        <p class="pricing-footnote reveal">Tarifs de lancement, sans engagement. La TVA applicable sera précisée lors de la commercialisation. <a href="/inscription.html">Comment se passe l’ouverture d’un espace ?</a></p>
       </section>
 
       <section class="section demo-request-section" id="demande-demo">
@@ -321,22 +345,27 @@
           <ul><li>30 minutes avec un humain</li><li>Des réponses adaptées à votre bureau</li><li>Aucune carte bancaire demandée</li></ul>
         </div>
         <form class="demo-form reveal" data-demo-form>
-          <div class="form-heading"><span>Demande de démonstration</span><small>Tous les champs marqués * sont obligatoires.</small></div>
+          <div class="form-heading"><span>Réserver votre présentation</span><small><b data-form-step-label>Étape 1 sur 2</b> · 30 minutes, sans engagement.</small></div>
+          <div class="form-step active" data-form-step="1">
           <div class="form-grid">
             <label><span>Votre nom *</span><input name="name" type="text" autocomplete="name" maxlength="100" required placeholder="Camille Martin" /></label>
             <label><span>Votre email *</span><input name="email" type="email" autocomplete="email" maxlength="200" required placeholder="camille@association.fr" /></label>
-            <label><span>Nom de l’association *</span><input name="association" type="text" autocomplete="organization" maxlength="160" required placeholder="Les Conscrits du Village" /></label>
+            <label class="form-wide"><span>Nom de l’association *</span><input name="association" type="text" autocomplete="organization" maxlength="160" required placeholder="Les Conscrits du Village" /></label>
+          </div><button class="button button-primary form-next" type="button" data-form-next>Choisir un créneau</button></div>
+          <div class="form-step" data-form-step="2" hidden>
+          <div class="form-grid">
             <label><span>Nombre de membres</span><select name="memberCount"><option value="">Sélectionner</option><option value="1-50">1 à 50</option><option value="51-100">51 à 100</option><option value="101-300">101 à 300</option><option value="301-1000">301 à 1 000</option><option value="1000+">Plus de 1 000</option></select></label>
-            <label><span>Date souhaitée</span><input name="preferredDate" type="date" data-booking-date /></label>
-            <label><span>Créneau préféré</span><select name="preferredSlot"><option value="">Peu importe</option><option>9 h – 12 h</option><option>12 h – 14 h</option><option>14 h – 18 h</option><option>Après 18 h</option></select></label>
+            <input name="preferredDate" type="hidden" data-booking-date /><input name="preferredSlot" type="hidden" data-booking-slot />
+            <div class="form-wide booking-picker"><span>Choisissez une date</span><div class="booking-days" data-booking-days></div><span>Choisissez une heure</span><div class="booking-slots" data-booking-slots><button type="button" data-slot="09:30">09:30</button><button type="button" data-slot="11:00">11:00</button><button type="button" data-slot="14:00">14:00</button><button type="button" data-slot="16:30">16:30</button><button type="button" data-slot="18:30">18:30</button></div></div>
             <label class="form-wide"><span>Qu’aimeriez-vous simplifier ?</span><textarea name="needs" maxlength="1500" rows="4" placeholder="Par exemple : suivre les cotisations, centraliser les documents, gérer la trésorerie…"></textarea></label>
             <label class="honeypot" aria-hidden="true">Votre site web<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
             <label class="form-consent form-wide"><input name="consent" type="checkbox" required /><span>J’accepte d’être recontacté au sujet d’Assos Conscrit. Mes informations servent uniquement à traiter cette demande.</span></label>
-          </div>
-          <button class="button button-primary form-submit" type="submit">Envoyer ma demande</button>
+          </div><div class="form-actions"><button class="button button-outline" type="button" data-form-back>Retour</button><button class="button button-primary form-submit" type="submit">Confirmer ma demande</button></div></div>
           <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
       </section>
+      <aside class="chat-widget" data-chat-widget><button class="chat-launcher" type="button" data-chat-toggle aria-expanded="false"><span>?</span> Une question</button><div class="chat-panel" hidden data-chat-panel><div class="chat-head"><b>Réponses rapides</b><button type="button" data-chat-toggle aria-label="Fermer">×</button></div><p>Que souhaitez-vous savoir ?</p><div class="chat-choices"><button type="button" data-chat-question="price">Combien coûte l’outil ?</button><button type="button" data-chat-question="data">Puis-je récupérer mes données ?</button><button type="button" data-chat-question="setup">Qui m’aide au démarrage ?</button><button type="button" data-chat-question="cancel">Puis-je résilier ?</button></div><div class="chat-answer" data-chat-answer>Choisissez une question ou demandez une présentation personnalisée.</div><a href="#demande-demo" data-chat-toggle>Parler de mon association</a></div></aside>
+      <a class="mobile-sticky-cta" href="#demande-demo" data-track="cta_presentation">Demander une présentation</a>
 
       <section class="section faq-section" id="faq">
         <div class="faq-intro reveal"><span class="eyebrow dark"><span></span> Questions fréquentes</span><h2>Vous vous posez peut-être la question.</h2><p>Assos Conscrit est conçu pour rester simple, même si vous changez de bureau ou de trésorier.</p></div>
@@ -358,9 +387,10 @@
     <footer>
       <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">AC</span><span>Assos Conscrit</span></a>
       <p>L’outil simple qui rassemble les associations.</p>
-      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="https://facture-freelance.vercel.app/demo">Démo</a><a href="/securite.html">Sécurité</a><a href="/aide.html">Aide</a><a href="/logiciel-conscrits.html">Logiciel conscrits</a><a href="https://github.com/camillejean192-byte/facture-freelance">GitHub</a></nav>
+      <nav aria-label="Liens de pied de page"><a href="#fonctionnalites">Fonctionnalités</a><a href="#tarifs">Tarifs</a><a href="https://facture-freelance.vercel.app/demo">Démo</a><a href="/roadmap.html">Feuille de route</a><a href="/nouveautes.html">Nouveautés</a><a href="/mentions-legales.html">Mentions légales</a><a href="/confidentialite.html">Confidentialité</a><a href="/cgu.html">CGU</a><a href="/cgv.html">CGV</a></nav>
       <small>© 2026 Assos Conscrit. Projet en cours de lancement.</small>
     </footer>
+    <script defer src="/_vercel/insights/script.js"></script>
     <script src="/script.js"></script>
   </body>
 </html>

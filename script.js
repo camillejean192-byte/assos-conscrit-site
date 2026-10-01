@@ -129,11 +129,165 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 updateTour();
 
 const bookingDate = document.querySelector("[data-booking-date]");
-if (bookingDate) {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  bookingDate.min = tomorrow.toISOString().split("T")[0];
+const bookingSlot = document.querySelector("[data-booking-slot]");
+const bookingDays = document.querySelector("[data-booking-days]");
+const bookingSlotButtons = [...document.querySelectorAll("[data-slot]")];
+
+if (bookingDate && bookingDays) {
+  const dates = [];
+  const cursor = new Date();
+  while (dates.length < 8) {
+    cursor.setDate(cursor.getDate() + 1);
+    if (cursor.getDay() !== 0 && cursor.getDay() !== 6) dates.push(new Date(cursor));
+  }
+  dates.forEach((date, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.date = date.toISOString().split("T")[0];
+    button.innerHTML = `<span>${date.toLocaleDateString("fr-FR", { weekday: "short" })}</span><b>${date.getDate()}</b><span>${date.toLocaleDateString("fr-FR", { month: "short" })}</span>`;
+    if (index === 0) {
+      button.classList.add("active");
+      bookingDate.value = button.dataset.date;
+    }
+    button.addEventListener("click", () => {
+      bookingDays.querySelectorAll("button").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      bookingDate.value = button.dataset.date;
+    });
+    bookingDays.append(button);
+  });
 }
+
+if (bookingSlot && bookingSlotButtons.length) {
+  bookingSlotButtons[0].classList.add("active");
+  bookingSlot.value = bookingSlotButtons[0].dataset.slot;
+  bookingSlotButtons.forEach((button) => button.addEventListener("click", () => {
+    bookingSlotButtons.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    bookingSlot.value = button.dataset.slot;
+  }));
+}
+
+const roleContent = {
+  presidence: ["PARCOURS PRÉSIDENCE", "Décider avec une information à jour.", "Consultez les indicateurs du bureau, vérifiez les actions récentes et gardez une vue d’ensemble sans demander plusieurs fichiers.", ["Tableau de bord de l’association", "Journal des actions importantes", "Accès maîtrisés pour chaque personne"]],
+  tresorerie: ["PARCOURS TRÉSORERIE", "Expliquer chaque mouvement rapidement.", "Enregistrez les recettes et dépenses, rattachez les justificatifs et préparez l’export comptable depuis la même vue.", ["Totaux mis à jour automatiquement", "Notes de frais reliées aux remboursements", "Exports CSV et récapitulatifs PDF"]],
+  secretariat: ["PARCOURS SECRÉTARIAT", "Garder un annuaire vraiment utile.", "Centralisez les coordonnées, les rôles, les adhésions signées et les documents dont le bureau a besoin.", ["Import et recherche rapide", "Suivi des signatures", "Bibliothèque de documents partagés"]],
+  membre: ["PARCOURS MEMBRE", "Participer sans apprendre un logiciel compliqué.", "Retrouvez les informations autorisées, échangez avec le bureau et transmettez une note de frais depuis le téléphone.", ["Accès limité au nécessaire", "Notifications utiles", "Utilisation sur mobile et ordinateur"]],
+};
+
+document.querySelectorAll("[data-role-tab]").forEach((button) => button.addEventListener("click", () => {
+  document.querySelectorAll("[data-role-tab]").forEach((item) => item.classList.remove("active"));
+  button.classList.add("active");
+  const content = roleContent[button.dataset.roleTab];
+  const panel = document.querySelector("[data-role-detail]");
+  if (content && panel) {
+    panel.querySelector("span").textContent = content[0];
+    panel.querySelector("h3").textContent = content[1];
+    panel.querySelector("p").textContent = content[2];
+    panel.querySelector("ul").innerHTML = content[3].map((item) => `<li>${item}</li>`).join("");
+    trackMarketing("role_explored", button.dataset.roleTab);
+  }
+}));
+
+const planRecommender = document.querySelector("[data-plan-recommender]");
+const planResult = document.querySelector("[data-plan-result]");
+const updatePlan = () => {
+  if (!planRecommender || !planResult) return;
+  const values = new FormData(planRecommender);
+  let plan = values.get("size");
+  if (values.get("support") === "yes") plan = "pro";
+  if (values.get("billing") === "yes" && plan === "starter") plan = "association";
+  const plans = {
+    starter: ["Starter · 19 € / mois", "L’essentiel pour centraliser les membres, la trésorerie et les documents."],
+    association: ["Association · 39 € / mois", "La formule complète pour centraliser la gestion du bureau."],
+    pro: ["Pro · 69 € / mois", "Le suivi renforcé pour les structures plus grandes ou exigeantes."],
+  };
+  planResult.querySelector("strong").textContent = plans[plan][0];
+  planResult.querySelector("p").textContent = plans[plan][1];
+};
+planRecommender?.querySelectorAll("select").forEach((select) => select.addEventListener("change", updatePlan));
+updatePlan();
+
+const formNext = document.querySelector("[data-form-next]");
+const formBack = document.querySelector("[data-form-back]");
+const formStepLabel = document.querySelector("[data-form-step-label]");
+const showFormStep = (step) => {
+  document.querySelectorAll("[data-form-step]").forEach((panel) => {
+    const active = panel.dataset.formStep === String(step);
+    panel.hidden = !active;
+    panel.classList.toggle("active", active);
+  });
+  if (formStepLabel) formStepLabel.textContent = `Étape ${step} sur 2`;
+};
+formNext?.addEventListener("click", () => {
+  const fields = [...document.querySelectorAll('[data-form-step="1"] input[required]')];
+  const invalid = fields.find((field) => !field.checkValidity());
+  if (invalid) return invalid.reportValidity();
+  showFormStep(2);
+  trackMarketing("booking_started", "form_step_2");
+});
+formBack?.addEventListener("click", () => showFormStep(1));
+
+function trackMarketing(event, label = "") {
+  window.va = window.va || function (...args) {
+    window.vaq = window.vaq || [];
+    window.vaq.push(args);
+  };
+  window.va("event", event, { label });
+  fetch("https://facture-freelance.vercel.app/api/marketing-event", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, label, path: window.location.pathname }),
+    keepalive: true,
+  }).catch(() => {});
+}
+
+document.querySelectorAll("[data-track]").forEach((element) => element.addEventListener("click", () => trackMarketing(element.dataset.track, element.textContent.trim().slice(0, 80))));
+document.querySelectorAll('.price-card .button').forEach((element) => element.addEventListener("click", () => trackMarketing("pricing_plan", element.closest(".price-card")?.querySelector(".plan")?.textContent || "")));
+document.querySelectorAll('a[href*="/demo"]').forEach((element) => element.addEventListener("click", () => trackMarketing("cta_demo", element.textContent.trim().slice(0, 80))));
+
+const guideForm = document.querySelector("[data-guide-form]");
+guideForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = new FormData(guideForm).get("email");
+  const status = guideForm.querySelector("[data-guide-status]");
+  const button = guideForm.querySelector("button");
+  button.disabled = true;
+  button.textContent = "Préparation…";
+  try {
+    const response = await fetch("https://facture-freelance.vercel.app/api/demo-request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: "Lecteur du guide", email, association: "Guide passation", memberCount: "", needs: "Téléchargement du guide de passation", website: "", consent: true }) });
+    if (!response.ok) throw new Error("Impossible d’envoyer le guide.");
+    status.textContent = "Le guide est prêt. Le téléchargement démarre.";
+    trackMarketing("guide_download", "guide_passation");
+    const link = document.createElement("a");
+    link.href = "/assets/guide-passation-bureau.pdf";
+    link.download = "guide-passation-bureau-associatif.pdf";
+    link.click();
+    guideForm.reset();
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : "Une erreur est survenue.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Recevoir et télécharger";
+  }
+});
+
+const chatPanel = document.querySelector("[data-chat-panel]");
+document.querySelectorAll("[data-chat-toggle]").forEach((button) => button.addEventListener("click", () => {
+  if (!chatPanel) return;
+  chatPanel.hidden = !chatPanel.hidden;
+  document.querySelector(".chat-launcher")?.setAttribute("aria-expanded", String(!chatPanel.hidden));
+}));
+const chatAnswers = {
+  price: "Les formules de lancement vont de 19 à 69 € par mois, sans prix par utilisateur.",
+  data: "Oui. L’annuaire et les données comptables disposent d’exports dans des formats courants.",
+  setup: "Le programme pilote comprend l’import de l’annuaire et une session de prise en main.",
+  cancel: "Les formules mensuelles sont prévues sans engagement. Les modalités exactes figurent dans les CGV.",
+};
+document.querySelectorAll("[data-chat-question]").forEach((button) => button.addEventListener("click", () => {
+  const answer = document.querySelector("[data-chat-answer]");
+  if (answer) answer.textContent = chatAnswers[button.dataset.chatQuestion];
+}));
 
 const demoForm = document.querySelector("[data-demo-form]");
 const formStatus = document.querySelector("[data-form-status]");
@@ -173,11 +327,23 @@ demoForm?.addEventListener("submit", async (event) => {
     demoForm.reset();
     formStatus.classList.add("success");
     formStatus.textContent = result.message;
+    trackMarketing("booking_completed", bookingDetails || "sans_creneau");
+    const selectedDate = formData.get("preferredDate");
+    const selectedSlot = formData.get("preferredSlot");
+    if (selectedDate && selectedSlot) {
+      const dateCompact = String(selectedDate).replaceAll("-", "");
+      const timeCompact = String(selectedSlot).replace(":", "");
+      const end = new Date(`${selectedDate}T${selectedSlot}:00`);
+      end.setMinutes(end.getMinutes() + 30);
+      const endCompact = `${String(end.getHours()).padStart(2, "0")}${String(end.getMinutes()).padStart(2, "0")}`;
+      const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Présentation Assos Conscrit")}&dates=${dateCompact}T${timeCompact}00/${dateCompact}T${endCompact}00&details=${encodeURIComponent("Créneau demandé. La confirmation définitive sera envoyée par Assos Conscrit.")}`;
+      formStatus.innerHTML = `${result.message}<br><a href="${calendarUrl}" target="_blank" rel="noopener">Ajouter le créneau à Google Agenda</a>`;
+    }
   } catch (error) {
     formStatus.classList.add("error");
     formStatus.textContent = error instanceof Error ? error.message : "Une erreur est survenue. Réessayez dans quelques instants.";
   } finally {
     submit.disabled = false;
-    submit.textContent = "Envoyer ma demande";
+    submit.textContent = "Confirmer ma demande";
   }
 });
