@@ -70,14 +70,19 @@ const tourDots = [...document.querySelectorAll("[data-tour-dot]")];
 const tourPlay = document.querySelector("[data-tour-play]");
 const tourProgress = document.querySelector("[data-tour-progress]");
 const tourTime = document.querySelector("[data-tour-time]");
-const totalTourSeconds = 75;
-let tourStartedAt = Date.now();
+const totalTourSeconds = 32;
+const tourSection = document.querySelector(".tour-section");
+let tourStartedAt = 0;
 let tourElapsed = 0;
-let tourPlaying = true;
+let tourPlaying = false;
+let activeTourSlide = 0;
 
 const showTourSlide = (index) => {
+  activeTourSlide = index;
   tourSlides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
   tourDots.forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === index));
+  const step = document.querySelector("[data-tour-step]");
+  if (step) step.textContent = `Étape ${index + 1}/${tourSlides.length}`;
 };
 
 const formatTourTime = (seconds) => {
@@ -89,12 +94,16 @@ const updateTour = () => {
   if (!tourSlides.length) return;
   const elapsed = tourPlaying ? Math.min(totalTourSeconds, tourElapsed + (Date.now() - tourStartedAt) / 1000) : tourElapsed;
   const current = Math.min(tourSlides.length - 1, Math.floor((elapsed / totalTourSeconds) * tourSlides.length));
-  showTourSlide(current);
+  if (current !== activeTourSlide) showTourSlide(current);
   if (tourProgress) tourProgress.style.width = `${(elapsed / totalTourSeconds) * 100}%`;
-  if (tourTime) tourTime.textContent = `${formatTourTime(elapsed)} / 01:15`;
+  if (tourTime) tourTime.textContent = `${formatTourTime(elapsed)} / 00:32`;
   if (elapsed >= totalTourSeconds && tourPlaying) {
-    tourElapsed = 0;
-    tourStartedAt = Date.now();
+    tourElapsed = totalTourSeconds;
+    tourPlaying = false;
+    tourSection?.classList.remove("is-playing");
+    tourPlay?.querySelector("span")?.replaceChildren("↻");
+    if (tourPlay?.querySelector("b")) tourPlay.querySelector("b").textContent = "Revoir";
+    tourPlay?.setAttribute("aria-label", "Revoir la visite");
   }
   requestAnimationFrame(updateTour);
 };
@@ -104,9 +113,14 @@ tourPlay?.addEventListener("click", () => {
     tourElapsed = Math.min(totalTourSeconds, tourElapsed + (Date.now() - tourStartedAt) / 1000);
     tourPlaying = false;
   } else {
+    if (tourElapsed >= totalTourSeconds) {
+      tourElapsed = 0;
+      showTourSlide(0);
+    }
     tourStartedAt = Date.now();
     tourPlaying = true;
   }
+  tourSection?.classList.toggle("is-playing", tourPlaying);
   tourPlay.querySelector("span").textContent = tourPlaying ? "Ⅱ" : "▶";
   tourPlay.querySelector("b").textContent = tourPlaying ? "Pause" : "Reprendre";
   tourPlay.setAttribute("aria-label", tourPlaying ? "Mettre la visite en pause" : "Reprendre la visite");
@@ -115,17 +129,14 @@ tourPlay?.addEventListener("click", () => {
 tourDots.forEach((dot, index) => {
   dot.addEventListener("click", () => {
     tourElapsed = (index / tourSlides.length) * totalTourSeconds;
-    tourStartedAt = Date.now();
+    if (tourPlaying) tourStartedAt = Date.now();
     showTourSlide(index);
+    if (tourProgress) tourProgress.style.width = `${(tourElapsed / totalTourSeconds) * 100}%`;
+    if (tourTime) tourTime.textContent = `${formatTourTime(tourElapsed)} / 00:32`;
   });
 });
 
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  tourPlaying = false;
-  tourPlay?.querySelector("span")?.replaceChildren("▶");
-  if (tourPlay?.querySelector("b")) tourPlay.querySelector("b").textContent = "Lancer";
-  tourPlay?.setAttribute("aria-label", "Lancer la visite");
-}
+showTourSlide(0);
 updateTour();
 
 const bookingDate = document.querySelector("[data-booking-date]");
